@@ -1,7 +1,8 @@
-greeting = "Welcome!"
+name1 = "larry"
+name2 = "curly"
+name3 = "moe"
+health1 = 60
 
-3.times do
-    puts greeting.upcase
-end
+puts "#{name1}'s health is #{health1}\n\t"
 
-puts "Game starting at ".concat(Time.new.to_s)
+puts "Players: \n\t#{name1}\n\t#{name2}\n\t#{name3}"
