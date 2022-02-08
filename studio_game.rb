@@ -14,6 +14,10 @@ class Player
         @health+@name.length
     end
 
+    def name=(new_name) 
+        @name = new_name.capitalize
+    end
+
     def blam(value = 10) 
        @health -= value 
        puts "#{@name} got blammed!"
@@ -25,7 +29,7 @@ class Player
     end
 
     def to_s
-        "I'm #{@name} with #{@health}HP and a score of #{score}"
+        "I'm #{@name} with #{@health}HP and a score of #{score}GP."
     end
 
     def time 
@@ -47,8 +51,7 @@ puts player3
 player3.w00t
 puts player3
 puts player3.name
-player3.name = "Rogerius"
-puts player3.name
+player3.name = "rogerius"
 puts player3.score
 puts player3
 
