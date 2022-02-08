@@ -1,7 +1,17 @@
 class Player 
+    
+        attr_reader :health
+
+        # attr_writer + attr_reader
+        attr_accessor :name
+
     def initialize(name, health = 100) 
         @name = name.capitalize
         @health = health
+    end
+
+    def score 
+        @health+@name.length
     end
 
     def blam(value = 10) 
@@ -15,7 +25,7 @@ class Player
     end
 
     def to_s
-        "I'm #{@name} with #{@health}HP"
+        "I'm #{@name} with #{@health}HP and a score of #{score}"
     end
 
     def time 
@@ -35,5 +45,10 @@ puts player3
 player3.blam
 puts player3
 player3.w00t
+puts player3
+puts player3.name
+player3.name = "Rogerius"
+puts player3.name
+puts player3.score
 puts player3
 
