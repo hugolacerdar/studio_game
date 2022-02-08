@@ -1,26 +1,22 @@
 name1 = "larry"
 health1 = 60
-
 name2 = "curly"
 health2 = 125
-
 name3 = "moe"
 health3 = 100
-
 name4 = "shemp"
 health4 = 90
 
+def time 
+    current_time = Time.new
+    current_time.strftime("%I:%M:%S")
+end
 
-puts "#{name1.capitalize} has a health of #{health1}."
-puts "#{name2.upcase} has a health of #{health2}."
+def player_presentation(player_name, player_health = 100)
+    "#{player_name.capitalize.ljust(30, ".")}#{player_health.to_s.ljust(3, ' ')} health (#{time})"
+end
 
-health2 = health1
-health1 = 30
-puts "#{name1.capitalize} has a health of #{health1}."
-puts "#{name2.upcase} has a health of #{health2}."
-
-puts "#{name3.capitalize} has a health of #{health3}.".center(50, "*")
-
-puts "#{name4.capitalize.ljust(30, '.')} #{health3} health"
-
-# puts "Players: \n\t#{name1}\n\t#{name2}\n\t#{name3}"
+puts player_presentation(name1, health1)
+puts player_presentation(name2, health2)
+puts player_presentation(name3)
+puts player_presentation(name4, health4)
