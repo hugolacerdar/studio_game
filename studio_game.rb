@@ -1,22 +1,39 @@
-name1 = "larry"
-health1 = 60
-name2 = "curly"
-health2 = 125
-name3 = "moe"
-health3 = 100
-name4 = "shemp"
-health4 = 90
+class Player 
+    def initialize(name, health = 100) 
+        @name = name.capitalize
+        @health = health
+    end
 
-def time 
-    current_time = Time.new
-    current_time.strftime("%I:%M:%S")
+    def blam(value = 10) 
+       @health -= value 
+       puts "#{@name} got blammed!"
+    end
+
+    def w00t(value = 15) 
+       @health += value 
+       puts "#{@name} got w00ted!"
+    end
+
+    def to_s
+        "I'm #{@name} with #{@health}HP"
+    end
+
+    def time 
+        current_time = Time.new
+        current_time.strftime("%I:%M:%S")
+    end
 end
 
-def player_presentation(player_name, player_health = 100)
-    "#{player_name.capitalize.ljust(30, ".")}#{player_health.to_s.ljust(3, ' ')} health (#{time})"
-end
+player1 = Player.new("moe")
+puts player1
 
-puts player_presentation(name1, health1)
-puts player_presentation(name2, health2)
-puts player_presentation(name3)
-puts player_presentation(name4, health4)
+player2 = Player.new("larry", 60)
+puts player2
+
+player3 = Player.new("curly", 125)
+puts player3
+player3.blam
+puts player3
+player3.w00t
+puts player3
+
