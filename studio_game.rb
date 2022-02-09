@@ -38,14 +38,46 @@ class Player
     end
 end
 
+class Game 
+
+    attr_reader :title
+    
+    def initialize(title) 
+        @title = title
+        @players = []
+    end
+
+    def add_players(players)
+        if(players.class == Array)
+            players.each do |p|
+                @players << p
+            end
+        elsif players.class == Player
+            @players << players
+        end
+    end
+
+    def play
+        puts "There are currently #{@players.size} players in #{@title}:"
+        @players.each do |p|
+            p.blam
+            p.blam
+            p.blam
+            p.w00t
+            puts p 
+        end
+    end
+end
+
 player1 = Player.new("moe")
 player2 = Player.new("larry", 60)
 player3 = Player.new("curly", 125)
 
-players = [player1, player2]
-players << player3
+battledroids = Game.new("Battledroids of Ooo")
 
-puts "There are #{players.size} players in the game:"
-players.each do |p|
-    puts p.health
-end
+battledroids.play
+battledroids.add_players(player1)
+battledroids.add_players([player3, player2])
+battledroids.play
+
+
