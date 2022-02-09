@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'die'
 
 class Game 
 
@@ -20,13 +21,23 @@ class Game
     end
 
     def play
-        puts "There are currently #{@players.size} players in #{@title}:"
-        @players.each do |p|
-            p.blam
-            p.blam
-            p.blam
-            p.w00t
-            puts p 
+        puts "There are #{@players.size} players in #{@title}: "
+        @players.each do |player|
+          puts player
+        end
+
+        @players.each do |player|
+            die = Die.new
+
+            case die.roll
+            when 1..2
+                player.blam
+            when 3..4
+                puts "#{player.name} was ignored."
+            else
+                player.w00t
+            end
+            puts player
         end
     end
 end
