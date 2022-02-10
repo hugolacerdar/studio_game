@@ -6,9 +6,9 @@ player3 = Player.new("curly", 125)
 
 battledroids = Game.new("Battledroids of Ooo")
 
-battledroids.play
+battledroids.play(3)
 battledroids.add_players(player1)
 battledroids.add_players([player3, player2])
-battledroids.play
+battledroids.play(9)
 
 
