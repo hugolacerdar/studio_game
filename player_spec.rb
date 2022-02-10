@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'treasure_trove'
 
 describe Player do
     before do
@@ -12,7 +13,9 @@ describe Player do
     end
 
     it "has a string representation" do
-        expect(@player.to_s).to eq("I'm Hugo with 199HP and a score of 203GP.")
+        @player.store_treasure(Treasure.new(:skull, 100))
+
+        expect(@player.to_s).to eq("I'm Hugo with health = 199HP, total gold = 100 and a score = 299GP.")
     end
 
     it "increases hp by 15 when w00ted" do
@@ -54,4 +57,27 @@ describe Player do
             expect(@player).not_to be_strong
         end
     end
+
+    it "computes total gold as the sum of all treasure value" do
+        expect(@player.total_gold).to eq(0)
+      
+        @player.store_treasure(Treasure.new(:hammer, 50))
+      
+        expect(@player.total_gold).to eq(50)
+      
+        @player.store_treasure(Treasure.new(:crowbar, 400))
+      
+        expect(@player.total_gold).to eq(450)
+      
+        @player.store_treasure(Treasure.new(:hammer, 50))
+      
+        expect(@player.total_gold).to eq(500)
+      end
+
+      it "computes a score as the sum of its health and total gold" do
+        @player.store_treasure(Treasure.new(:hammer, 50))
+        @player.store_treasure(Treasure.new(:hammer, 50))
+      
+        expect(@player.score).to eq(299)
+      end
 end
