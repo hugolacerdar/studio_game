@@ -1,6 +1,6 @@
 class Player 
     
-    attr_reader :health
+    attr_reader :health, :treasure_stack
 
     # attr_writer + attr_reader
     attr_accessor :name
@@ -8,10 +8,21 @@ class Player
     def initialize(name, health = 100) 
         @name = name.capitalize
         @health = health
+        @treasure_stack = Hash.new(0)
+    end
+
+    def store_treasure(treasure)
+         @treasure_stack[treasure.item] += treasure.value
+         puts "#{@name} found the item #{treasure.item} (+#{treasure.value})"
+         puts "#{@name}'s treasures: #{@treasure_stack}"
     end
 
     def score 
-        @health+@name.length
+        @health + total_gold
+    end
+
+    def total_gold 
+        @treasure_stack.values.reduce(0, :+)
     end
 
     def score_string 
@@ -41,7 +52,7 @@ class Player
     end
 
     def to_s
-        "I'm #{@name} with #{@health}HP and a score of #{score}GP."
+        "I'm #{@name} with health = #{@health}HP, total gold = #{total_gold} and a score = #{score}GP."
     end
 
     def time 
