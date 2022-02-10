@@ -47,12 +47,19 @@ class Game
         print_stats
     end
 
-    def print_stats
-        if(@players.empty?) 
-            return
+    def total_gold_collected
+        @players.reduce(0) do |sum, player| 
+            sum + player.total_gold
         end
+    end
 
+    def print_stats
         puts "\n#{@title} Statistics:"
+
+        puts "\nA total of #{total_gold_collected} gold was collected:"
+        @players.each do |player|
+            puts "\n#{player.name} got a grand total of: #{player.total_gold} gold"
+        end
 
         strong_players, wimpy_players = @players.partition {|player| player.strong?}
         
