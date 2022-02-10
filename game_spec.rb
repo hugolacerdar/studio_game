@@ -45,7 +45,34 @@ describe Game do
         end
       
         it "is sorted by decreasing score" do
-          @players.sort.should == [@player3, @player2, @player1]
+          expect(@players.sort).to eq([@player3, @player2, @player1])
         end
+      end
+
+      it "assigns a treasure for total gold during a player's turn" do
+        game = Game.new("Knuckleheads")
+        player = Player.new("moe")
+      
+        game.add_players(player)
+      
+        game.play(1)
+      
+        expect(player.total_gold).not_to be_zero      
+      end
+
+      it "computes total gold collected as the sum of all player gold" do
+        game = Game.new("Knuckleheads")
+      
+        player1 = Player.new("moe")
+        player2 = Player.new("larry")
+      
+        game.add_players(player1)
+        game.add_players(player2)
+      
+        player1.store_treasure(Treasure.new(:hammer, 50))
+        player1.store_treasure(Treasure.new(:hammer, 50))
+        player2.store_treasure(Treasure.new(:crowbar, 400))
+      
+        expect(game.total_gold_collected).to eq(500)
       end
 end
