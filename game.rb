@@ -1,5 +1,6 @@
 require_relative 'player'
 require_relative 'game_turn'
+require_relative 'treasure_trove'
 
 class Game 
 
@@ -25,13 +26,21 @@ class Game
         @players.each do |player|
           puts player
         end
+        
+        if @players.empty? 
+            puts "Please add at least one player to be able to play."
+            return
+        end
+
+        treasures = TreasureTrove::TREASURES
+        puts "\nThere are a total of #{treasures.size} treasures on the game:"
+        treasures.each {|t| puts "- #{t.item.to_s} is worth #{t.value} gold."}
 
         1.upto(rounds) do |round|
-            puts @players.empty? ? "No players to play" : "\nRound #{round}"
+            puts "\nRound #{round}"
 
             @players.each do |player|
                 GameTurn.take_turn(player)
-                puts player
             end
         end
 
