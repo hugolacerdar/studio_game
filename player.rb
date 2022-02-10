@@ -1,6 +1,6 @@
 class Player 
     
-    attr_reader :health, :treasure_stack
+    attr_reader :health
 
     # attr_writer + attr_reader
     attr_accessor :name
@@ -31,6 +31,12 @@ class Player
 
     def strong? 
         @health > 100
+    end
+
+    def each_treasure() 
+        @treasure_stack.each do |item, value|
+            yield Treasure.new(item, value)
+        end
     end
 
     def <=>(other_player) 
