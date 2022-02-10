@@ -11,6 +11,8 @@ module GameTurn
         else
             player.w00t
         end
-        puts player
+
+        treasure = TreasureTrove.random
+        puts "#{player.name} found the item #{treasure.item} (+#{treasure.value})"
     end
 end
