@@ -13,6 +13,6 @@ module GameTurn
         end
 
         treasure = TreasureTrove.random
-        puts "#{player.name} found the item #{treasure.item} (+#{treasure.value})"
+        player.store_treasure(treasure)
     end
 end
