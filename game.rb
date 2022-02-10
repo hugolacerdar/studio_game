@@ -37,6 +37,10 @@ class Game
         treasures.each {|t| puts "- #{t.item.to_s} is worth #{t.value} gold."}
 
         1.upto(rounds) do |round|
+            if block_given?
+                break if yield
+            end
+            
             puts "\nRound #{round}"
 
             @players.each do |player|
@@ -59,6 +63,9 @@ class Game
         puts "\nA total of #{total_gold_collected} gold was collected:"
         @players.each do |player|
             puts "\n#{player.name} got a grand total of: #{player.total_gold} gold"
+            player.each_treasure do |treasure| 
+                puts "#{treasure.value} gold on #{treasure.item}"
+            end
         end
 
         strong_players, wimpy_players = @players.partition {|player| player.strong?}
