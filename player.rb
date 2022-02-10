@@ -14,8 +14,16 @@ class Player
         @health+@name.length
     end
 
+    def score_string 
+        "#{@name.ljust(30, '.')} #{score}"
+    end
+
     def strong? 
         @health > 100
+    end
+
+    def <=>(other_player) 
+        other_player.score <=> score
     end
 
     def name=(new_name) 
