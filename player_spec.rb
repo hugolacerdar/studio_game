@@ -72,12 +72,34 @@ describe Player do
         @player.store_treasure(Treasure.new(:hammer, 50))
       
         expect(@player.total_gold).to eq(500)
-      end
+    end
 
-      it "computes a score as the sum of its health and total gold" do
+    it "computes a score as the sum of its health and total gold" do
         @player.store_treasure(Treasure.new(:hammer, 50))
         @player.store_treasure(Treasure.new(:hammer, 50))
-      
+        
         expect(@player.score).to eq(299)
-      end
+    end
+
+    it "yields each found treasure and its total points" do
+        @player.store_treasure(Treasure.new(:skillet, 100))
+        @player.store_treasure(Treasure.new(:skillet, 100))
+        @player.store_treasure(Treasure.new(:hammer, 50))
+        @player.store_treasure(Treasure.new(:bottle, 5))
+        @player.store_treasure(Treasure.new(:bottle, 5))
+        @player.store_treasure(Treasure.new(:bottle, 5))
+        @player.store_treasure(Treasure.new(:bottle, 5))
+        @player.store_treasure(Treasure.new(:bottle, 5))
+      
+        yielded = []
+        @player.each_treasure do |treasure|
+          yielded << treasure
+        end
+      
+        expect(yielded).to eq([
+          Treasure.new(:skillet, 200),
+          Treasure.new(:hammer, 50),
+          Treasure.new(:bottle, 25)
+       ])
+    end
 end
