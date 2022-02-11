@@ -61,6 +61,10 @@ class Player
         "I'm #{@name} with health = #{@health}HP, total gold = #{total_gold} and a score = #{score}GP."
     end
 
+    def to_csv
+        "#{@name},#{score}"
+    end
+
     def time 
         current_time = Time.new
         current_time.strftime("%I:%M:%S")
