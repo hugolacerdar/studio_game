@@ -11,6 +11,11 @@ class Player
         @treasure_stack = Hash.new(0)
     end
 
+    def self.from_csv(line) 
+        name, health = line.split(',')
+        Player.new(name, Integer(health))
+    end
+
     def store_treasure(treasure)
          @treasure_stack[treasure.item] += treasure.value
          puts "#{@name} found the item #{treasure.item} (+#{treasure.value})"
