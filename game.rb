@@ -21,6 +21,14 @@ class Game
         end
     end
 
+    def load(from_file)
+        players_to_add = []
+        File.readlines(from_file).each do |line|
+            name, health = line.split(',')
+            players_to_add << Player.new(name, health.to_i)
+        end
+        add_players(players_to_add)
+    end
     def play(rounds = 1)
         puts "\nThere are #{@players.size} players in #{@title}: "
         @players.each do |player|
