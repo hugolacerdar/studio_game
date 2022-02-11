@@ -34,3 +34,5 @@ loop do
         puts "Please enter a number or 'quit'"
     end
 end
+
+xage.save("new_rank.csv")
