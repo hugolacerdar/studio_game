@@ -29,6 +29,17 @@ class Game
         end
         add_players(players_to_add)
     end
+
+    def save(to_file="players_rank.csv") 
+        puts "Saving scores..."
+        File.open(to_file, 'w') do |file|
+            @players.sort.each do |player|
+                file.puts player.to_csv
+            end
+        end
+        puts "Save completed."
+    end
+
     def play(rounds = 1)
         puts "\nThere are #{@players.size} players in #{@title}: "
         @players.each do |player|
