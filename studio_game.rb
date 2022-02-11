@@ -18,15 +18,17 @@ doom.add_players([player1, player2, player3, player4])
 #   doom.total_gold_collected >= 20000
 #end
 
+xage = Game.new('XAge')
+xage.load(ARGV.shift || "players.csv")
 loop do
     puts "\nHow many rounds? ('quit' to exit)"
     answer = gets.chomp.downcase
     case answer
     when /^\d+$/
         puts "About to play #{answer} rounds..."
-        doom.play(answer.to_i)
+        xage.play(answer.to_i)
     when 'quit', 'exit'
-        doom.print_stats
+        xage.print_stats
         break
     else 
         puts "Please enter a number or 'quit'"
