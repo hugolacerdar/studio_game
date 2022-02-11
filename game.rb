@@ -21,7 +21,7 @@ class Game
         end
     end
 
-    def load(from_file)
+    def load_players(from_file)
         players_to_add = []
         File.readlines(from_file).each do |line|
             name, health = line.split(',')
@@ -30,7 +30,7 @@ class Game
         add_players(players_to_add)
     end
 
-    def save(to_file="players_rank.csv") 
+    def save_scores(to_file="players_rank.csv") 
         puts "Saving scores..."
         File.open(to_file, 'w') do |file|
             @players.sort.each do |player|
