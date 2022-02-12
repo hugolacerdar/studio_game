@@ -1,7 +1,11 @@
 require_relative 'game'
+require_relative 'clumsy_player'
+
+clumsy = ClumsyPlayer.new("Clumclum", 1000)
 
 xage = Game.new('XAge')
-xage.load(ARGV.shift || "players.csv")
+xage.load_players(ARGV.shift || "players.csv")
+xage.add_players(clumsy)
 loop do
     puts "\nHow many rounds? ('quit' to exit)"
     answer = gets.chomp.downcase
@@ -17,4 +21,4 @@ loop do
     end
 end
 
-xage.save("new_rank.csv")
+xage.save_scores("new_rank.csv")
