@@ -1,7 +1,7 @@
 require_relative "player"
 
 class BerserkPlayer < Player 
-    def initialize(name, health)
+    def initialize(name, health = 100)
         super(name, health)
         @times_w00ted = 0
     end
