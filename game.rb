@@ -16,7 +16,7 @@ class Game
             players.each do |p|
                 @players << p
             end
-        elsif players.class == Player
+        else
             @players << players
         end
     end
