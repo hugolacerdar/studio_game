@@ -1,7 +1,7 @@
 require_relative 'game'
 require_relative 'clumsy_player'
 
-clumsy = ClumsyPlayer.new("Clumclum", 1000)
+clumsy = ClumsyPlayer.new("Clumclum", 100, 20)
 
 xage = Game.new('XAge')
 xage.load_players(ARGV.shift || "players.csv")
